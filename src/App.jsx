@@ -4,6 +4,7 @@ import HomePage from "./Components/HomePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import SingleArticle from "./Components/SingleArticle";
+import "../src/Components/styles/App.css";
 
 
 function App() {
