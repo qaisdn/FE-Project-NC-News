@@ -4,10 +4,16 @@ const request = axios.create({
   baseURL: "https://be-project-nc-news-16ce.onrender.com/api",
 });
 
-export const getAllArticles = () => {
-  return request.get("/articles").then(({ data: { articles } }) => {
-    return articles;
-  });
+export const getAllArticles = (topic) => {
+  return request
+    .get("/articles", {
+      params: {
+        topic: topic,
+      },
+    })
+    .then(({ data: { articles } }) => {
+      return articles;
+    });
 };
 
 export const getArticleById = (article_id) => {

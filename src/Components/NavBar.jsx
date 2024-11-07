@@ -11,9 +11,13 @@ const NavComponent = ({ user }) => {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/articles">Articles</Nav.Link>
             <NavDropdown title="Topics" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/football">Football</NavDropdown.Item>
-              <NavDropdown.Item href="/coding">Coding</NavDropdown.Item>
-              <NavDropdown.Item href="cooking">Cooking</NavDropdown.Item>
+              <NavDropdown.Item href="/topics/football">
+                Football
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/topics/coding">Coding</NavDropdown.Item>
+              <NavDropdown.Item href="/topics/cooking">
+                Cooking
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
