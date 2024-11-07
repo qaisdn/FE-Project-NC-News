@@ -6,16 +6,30 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import { useParams } from "react-router";
+import axios from "axios";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { topic } = useParams();
 
   useEffect(() => {
-    getAllArticles().then((articles) => {
-      setArticles(articles);
-      setIsLoading(false);
-    });
+    if (!topic) {
+      getAllArticles().then((articles) => {
+        setArticles(articles);
+        setIsLoading(false);
+      });
+    } else {
+      axios
+        .get(
+          `https://be-project-nc-news-16ce.onrender.com/api/articles?topic=${topic}`
+        )
+        .then(({ data: { articles } }) => {
+          setArticles(articles);
+          setIsLoading(false);
+        });
+    }
   });
 
   if (isLoading) {
@@ -28,7 +42,14 @@ export default function ArticlesList() {
 
   return (
     <section>
-      <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
+      {topic ? (
+        <h2 className={ArticlesCSS.ArticleH2}>
+          {topic.charAt(0).toUpperCase() + topic.slice(1)} Articles
+        </h2>
+      ) : (
+        <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
+      )}
+
       <Row>
         {articles.map((article) => {
           return (
