@@ -1,7 +1,6 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-export default function NavComponent() {
+const NavComponent = ({ user }) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -18,7 +17,12 @@ export default function NavComponent() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Text>
+          Signed in as: <a href="/users">{user.loggedInUser?.username}</a>
+        </Navbar.Text>
       </Container>
     </Navbar>
   );
-}
+};
+
+export default NavComponent;
